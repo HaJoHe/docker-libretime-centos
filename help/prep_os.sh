@@ -6,7 +6,8 @@
 #
 yum -y install epel-release
 
-yum -y install git wget postgresql-server postgresql-contrib php php-amqplib httpd python-pip 
+yum -y install git wget postgresql-server postgresql-contrib \
+ php php-amqplib httpd python-pip icecast 
 #ln -fs /usr/bin/python3 /usr/bin/python
 
 #
