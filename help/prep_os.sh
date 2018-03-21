@@ -10,6 +10,13 @@ yum -y install git wget postgresql-server postgresql-contrib \
  php php-amqplib httpd python-pip icecast 
 #ln -fs /usr/bin/python3 /usr/bin/python
 
+#postgresql
+echo "Init database"
+postgresql-setup initdb
+echo "host    all             all             0.0.0.0/0 trust" >> /var/lib/pgsql/data/pg_hba.conf
+echo "listen_addresses='*'" >> /var/lib/pgsql/data/pg_hba.conf
+systemctl restart postgresql
+
 #
 #  Erlang for RabbitMQ
 #
