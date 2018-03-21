@@ -53,7 +53,7 @@ rabbitmq-plugins enable rabbitmq_management
 echo "Install libretime"
 cp /install /libretime_src/libretime/install
 cd /libretime_src/libretime
-./install -fiap --distribution=centos-7 --release=7
+./install -fiap --distribution=centos --release=7
 cd /
 #
 
