@@ -14,11 +14,7 @@ ENV container docker
 COPY help/* /
 RUN /prep_os.sh
 
-#RUN yum -y install rabbitmq postgresql-server postgresql-contrib ;\
-#yum clean all;\
-#systemctl enable postgresql; \
-#rm -rf /var/cache/yum
-
+# Clean up systemd 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 systemd-tmpfiles-setup.service ] || rm -f $i; done); \
 rm -f /lib/systemd/system/multi-user.target.wants/*;\
