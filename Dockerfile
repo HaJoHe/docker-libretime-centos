@@ -1,18 +1,11 @@
 # 
-# Dockerfile based on work of https://hub.docker.com/_/ubuntu-upstart/
-# and inspired by https://github.com/okvic77/docker-airtime
-#
+# Dockerfile based on my work hajo/docker-libretime
+# ..moved to CentOS7
 FROM centos:7
 
 MAINTAINER Hans-Joachim dd8ne@web.de
 
 ENV container docker
-
-#
-# Install OS Stuff
-#
-COPY help/* /
-RUN /prep_os.sh
 
 # Clean up systemd 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
@@ -26,13 +19,18 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 #
+# Install OS Stuff
+#
+COPY help/* /
+RUN /prep_os.sh
+
+#
 # Enable services
 #
 RUN /enable_service.sh
 
 VOLUME [ "/sys/fs/cgroup" ]
 
+EXPOSE 80
+
 CMD ["/usr/sbin/init"]
-
-
-
