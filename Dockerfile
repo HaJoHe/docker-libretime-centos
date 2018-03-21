@@ -11,7 +11,7 @@ ENV container docker
 #
 # Install OS Stuff
 #
-COPY help/*.sh /
+COPY help/* /
 RUN /prep_os.sh
 
 #RUN yum -y install rabbitmq postgresql-server postgresql-contrib ;\
