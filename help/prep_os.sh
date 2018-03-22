@@ -70,3 +70,8 @@ cd /
 yum clean all
 rm -rf /var/cache/yum
 rm -rf rabbitmq-server-3.6.10-1.el7.noarch.rpm
+
+# define postgres password file
+echo "localhost:5432:airtime:airtime:airtime" > /root/.pgpass
+chmod 600 /root/.pgpass 
+

@@ -6,6 +6,8 @@ FROM centos:7
 MAINTAINER Hans-Joachim dd8ne@web.de
 
 ENV container docker
+# force hostname
+ENV hostname localhost
 
 # Clean up systemd 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
@@ -29,7 +31,7 @@ RUN /prep_os.sh
 #
 RUN /enable_service.sh
 
-VOLUME [ "/sys/fs/cgroup" ]
+VOLUME [ "/sys/fs/cgroup" "/etc/airtime", "/var/lib/pgsql", "/srv/airtime/stor", "/srv/airtime/watch" ]
 
 EXPOSE 80
 
