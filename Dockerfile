@@ -7,7 +7,7 @@ MAINTAINER Hans-Joachim dd8ne@web.de
 
 ENV container docker
 # force hostname
-ENV hostname localhost
+ENV HOSTNAME localhost
 
 # Clean up systemd 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
@@ -26,12 +26,7 @@ rm -f /lib/systemd/system/anaconda.target.wants/*;
 COPY help/* /
 RUN /prep_os.sh
 
-#
-# Enable services
-#
-RUN /enable_service.sh
-
-VOLUME [ "/sys/fs/cgroup" "/etc/airtime", "/var/lib/pgsql", "/srv/airtime/stor", "/srv/airtime/watch" ]
+VOLUME [ "/sys/fs/cgroup", "/etc/airtime", "/var/lib/pgsql", "/srv/airtime/stor", "/srv/airtime/watch" ]
 
 EXPOSE 80
 

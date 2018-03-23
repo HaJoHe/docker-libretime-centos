@@ -7,15 +7,9 @@
 yum -y install epel-release
 
 yum -y install git wget postgresql-server postgresql-contrib \
- php php-amqplib httpd python-pip icecast 
+ php php-amqplib php-pgsql httpd python-pip icecast iproute 
 #ln -fs /usr/bin/python3 /usr/bin/python
 
-#postgresql
-echo "Init database"
-postgresql-setup initdb
-echo "host    all             all             0.0.0.0/0 trust" >> /var/lib/pgsql/data/pg_hba.conf
-#echo "listen_addresses='*'" >> /var/lib/pgsql/data/pg_hba.conf
-systemctl restart postgresql
 
 #
 #  Erlang for RabbitMQ
@@ -54,15 +48,6 @@ echo "NODENAME=rabbitmq@localhost" > /etc/rabbitmq/rabbitmq-env.conf
 rabbitmq-plugins enable rabbitmq_management
 #
 
-#
-# install lastest libretime
-#
-echo "Install libretime"
-cp /install /libretime_src/libretime/install
-cd /libretime_src/libretime
-./install -fiap --distribution=centos --release=7
-cd /
-#
 
 #
 # Clean up packagemanager
@@ -70,6 +55,17 @@ cd /
 yum clean all
 rm -rf /var/cache/yum
 rm -rf rabbitmq-server-3.6.10-1.el7.noarch.rpm
+
+cat <<EOF > /etc/systemd/1st_run.service
+[Unit]
+Description=1st Run - Setup
+[Service]
+Type=oneshot
+ExecStart=/1stRun.sh
+[Install]
+RequiredBy=multi-user.target
+EOF
+
 
 # define postgres password file
 echo "localhost:5432:airtime:airtime:airtime" > /root/.pgpass
