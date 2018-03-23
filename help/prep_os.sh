@@ -56,16 +56,6 @@ yum clean all
 rm -rf /var/cache/yum
 rm -rf rabbitmq-server-3.6.10-1.el7.noarch.rpm
 
-cat <<EOF > /etc/systemd/1st_run.service
-[Unit]
-Description=1st Run - Setup
-[Service]
-Type=oneshot
-ExecStart=/1stRun.sh
-[Install]
-RequiredBy=multi-user.target
-EOF
-
 
 # define postgres password file
 echo "localhost:5432:airtime:airtime:airtime" > /root/.pgpass
