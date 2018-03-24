@@ -6,9 +6,14 @@
 #
 yum -y install epel-release
 
+#
+# radiorabe stuff (liquidsoap)
+#
+rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+curl -o /etc/yum.repos.d/liquidsoap.repo http://download.opensuse.org/repositories/home:/radiorabe:/liquidsoap/CentOS_7/home:radiorabe:liquidsoap.repo
+
 yum -y install git wget postgresql-server postgresql-contrib \
- php php-amqplib php-pgsql httpd python-pip icecast iproute chrony 
-#ln -fs /usr/bin/python3 /usr/bin/python
+ php php-amqplib php-pgsql httpd python-pip icecast iproute liquidsoap 
 
 
 #
@@ -66,5 +71,5 @@ systemctl enable rabbitmq-server
 systemctl enable postgresql
 systemctl enable httpd
 systemctl enable icecast
-systemctl enable chronyd
+systemctl enable liquidsoap
 #
