@@ -15,7 +15,7 @@ if [ ! -f $FILE ]; then
    postgresql-setup initdb
    echo "local   all             all             peer"             >  /var/lib/pgsql/data/pg_hba.conf
    echo "host    all             all             127.0.0.1/32 md5" >> /var/lib/pgsql/data/pg_hba.conf
-   echo "host    all             all             ::0/128      md5" >> /var/lib/pgsql/data/pg_hba.conf
+   echo "host    all             all             ::1/128      md5" >> /var/lib/pgsql/data/pg_hba.conf
    systemctl enable postgresql
    systemctl restart postgresql
    #
