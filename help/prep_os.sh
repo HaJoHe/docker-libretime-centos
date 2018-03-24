@@ -7,7 +7,7 @@
 yum -y install epel-release
 
 yum -y install git wget postgresql-server postgresql-contrib \
- php php-amqplib php-pgsql httpd python-pip icecast iproute 
+ php php-amqplib php-pgsql httpd python-pip icecast iproute chrony 
 #ln -fs /usr/bin/python3 /usr/bin/python
 
 
@@ -61,3 +61,10 @@ rm -rf rabbitmq-server-3.6.10-1.el7.noarch.rpm
 echo "localhost:5432:airtime:airtime:airtime" > /root/.pgpass
 chmod 600 /root/.pgpass 
 
+# activate services
+systemctl enable rabbitmq-server
+systemctl enable postgresql
+systemctl enable httpd
+systemctl enable icecast
+systemctl enable chronyd
+#
