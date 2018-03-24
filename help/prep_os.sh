@@ -71,5 +71,4 @@ systemctl enable rabbitmq-server
 systemctl enable postgresql
 systemctl enable httpd
 systemctl enable icecast
-systemctl enable liquidsoap
 #
