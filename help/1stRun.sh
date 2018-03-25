@@ -5,7 +5,6 @@ FILE=/1st_start.done
 #test if already done
 if [ ! -f $FILE ]; then
    echo "1st Run ---- Init"
-
    #
    # postgresql
    #
@@ -39,7 +38,8 @@ if [ ! -f $FILE ]; then
 
    echo "install libretime please be patient ....."
    cd /libretime_src/libretime
+   # patch for liquidsoap 1.3.x
+   curl -L https://github.com/LibreTime/libretime/compare/master...radiorabe:feature/liquidsoap-1.3.0.patch 
    ./install -fiap
-
    touch $FILE
 fi

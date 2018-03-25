@@ -12,7 +12,7 @@ yum -y install epel-release
 rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
 curl -o /etc/yum.repos.d/liquidsoap.repo http://download.opensuse.org/repositories/home:/radiorabe:/liquidsoap/CentOS_7/home:radiorabe:liquidsoap.repo
 
-yum -y install git wget postgresql-server postgresql-contrib \
+yum -y install git wget postgresql-server postgresql-contrib patch \
  php php-amqplib php-pgsql httpd python-pip icecast iproute liquidsoap 
 
 
@@ -53,6 +53,11 @@ echo "NODENAME=rabbitmq@localhost" > /etc/rabbitmq/rabbitmq-env.conf
 rabbitmq-plugins enable rabbitmq_management
 #
 
+#
+# liquidsoap
+#
+cp /etc/liquidsoap/radio.liq.example /etc/liquidsoap/radio.liq
+
 
 #
 # Clean up packagemanager
@@ -71,4 +76,5 @@ systemctl enable rabbitmq-server
 systemctl enable postgresql
 systemctl enable httpd
 systemctl enable icecast
+systemctl enable liquidsoap@radio
 #
